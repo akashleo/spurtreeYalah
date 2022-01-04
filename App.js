@@ -1,20 +1,64 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+/*import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
 
-export default function App() {
+const navigator = createStackNavigator(
+  {
+    Search: SearchScreen,
+  },
+  {
+    initialRouteName: "Search",
+    defaultNaviationOptions: {
+      title: "Restaurant Search",
+    },
+  }
+);
+
+export default createAppContainer(navigator);*/
+
+import React, { Component } from "react";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import SearchBar from "./components/SearchBar";
+import ProductList from "./components/ProductList";
+import Header from "./components/Header";
+import Navbar from "./components/Navbar";
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
+          <Header />
+          <Navbar />
+          <SearchBar />
+          <ProductList style={styles.product} />
+        </ScrollView>
+      </SafeAreaView>
+    </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    marginTop: 70,
+  },
+  product: {
+    padding: 20,
+    width: "50%",
+    margin: 10,
+  },
+  scrollView: {
+    backgroundColor: "pink",
+    marginHorizontal: 20,
   },
 });
+
+export default App;
